@@ -1,16 +1,22 @@
 package main
 
 import (
-	"first-app/controller"
+	"first-app/config"
 	"fmt"
-
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	r := gin.New()
+	// initialize environment variable
+	config.InitEnv()
+	config.InitDb()
+	defer config.DB.Close()
 
-	controller.HelloWorld(r)
-	r.Run(":8090")
+	// setup router
+	r := config.SetupRouter()
+
+	// run the server
+	port := config.GetEnv("PORT", "8090")
+	r.Run(fmt.Sprintf(":%s", port))
+
 	fmt.Println("Hello World")
 }
