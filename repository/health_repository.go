@@ -22,7 +22,7 @@ func NewHealthRepository(log *logrus.Logger) *HealthRepository {
 	}
 }
 
-func (r *HealthRepository) checkDB(tx *gorm.DB, health *response.CheckDBResponse) error {
+func (r *HealthRepository) CheckDB(tx *gorm.DB, health *response.CheckDBResponse) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
 	defer cancel()
 

@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"first-app/models/response"
+	"first-app/model/response"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
